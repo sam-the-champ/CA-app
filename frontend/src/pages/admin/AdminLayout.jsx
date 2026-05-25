@@ -18,9 +18,9 @@ export default function AdminLayout() {
   const handleLogout = () => { logout(); navigate('/'); };
 
   return (
-    <div style={styles.shell}>
+    <div style={styles.shell} className="admin-layout-shell">
       {/* Mobile Header */}
-      <header style={styles.mobileHeader}>
+      <header style={styles.mobileHeader} className="admin-mobile-header">
         <button 
           style={styles.mobileMenuBtn} 
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -41,8 +41,8 @@ export default function AdminLayout() {
         </button>
       </header>
 
-      {/* Sidebar - Desktop */}
-      <aside style={{ ...styles.sidebar, width: collapsed ? 64 : 220, display: 'none' }}>
+      {/* Desktop Sidebar */}
+      <aside style={{ ...styles.sidebar, width: collapsed ? 64 : 220 }} className="admin-sidebar">
         <div style={styles.sideTop}>
           <div style={styles.logoBox}>
             <span style={styles.logoIcon}>CA</span>
@@ -56,7 +56,9 @@ export default function AdminLayout() {
         <nav style={styles.nav}>
           {NAV.map(({ to, label, icon, end }) => (
             <NavLink
-              key={to} to={to} end={end}
+              key={to} 
+              to={to} 
+              end={end}
               style={({ isActive }) => ({ ...styles.navItem, ...(isActive ? styles.navActive : {}) })}
             >
               <span style={styles.navIcon}>{icon}</span>
@@ -113,7 +115,7 @@ export default function AdminLayout() {
       )}
 
       {/* Main Content */}
-      <main style={styles.main}>
+      <main style={styles.main} className="admin-main">
         <Outlet />
       </main>
     </div>
@@ -125,7 +127,6 @@ const styles = {
     display: 'flex', 
     minHeight: '100vh', 
     background: 'var(--surface-2)',
-    flexDirection: 'column',
   },
   
   // Desktop Sidebar
@@ -181,7 +182,8 @@ const styles = {
     borderRadius: 6, 
     cursor: 'pointer', 
     fontSize: '0.8rem', 
-    flexShrink: 0 
+    flexShrink: 0,
+    transition: 'all 0.15s',
   },
   nav: { 
     flex: 1, 
@@ -268,6 +270,7 @@ const styles = {
     justifyContent: 'space-between',
     borderBottom: '1px solid rgba(0,0,0,0.1)',
     gap: '0.5rem',
+    height: 56,
   },
   mobileMenuBtn: {
     background: 'rgba(255,255,255,0.2)',
@@ -282,6 +285,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
+    transition: 'all 0.15s',
   },
   mobileHeaderBrand: {
     display: 'flex',
@@ -322,6 +326,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
+    transition: 'all 0.15s',
   },
   
   // Mobile Sidebar Overlay
@@ -408,30 +413,3 @@ const styles = {
     overflowY: 'auto',
   },
 };
-
-// Add this CSS media query to make sidebar show on desktop
-if (typeof window !== 'undefined') {
-  const style = document.createElement('style');
-  style.innerHTML = `
-    @media (min-width: 1025px) {
-      [style*="sidebar"] { display: flex !important; }
-      [style*="mobileHeader"] { display: none !important; }
-    }
-    
-    @media (max-width: 1024px) {
-      [style*="display: none;"] { display: none !important; }
-    }
-    
-    @media (max-width: 768px) {
-      aside[style*="sidebar"] { display: none !important; }
-      header[style*="mobileHeader"] { display: flex !important; }
-      main[style*="main"] { padding: 1rem; }
-    }
-    
-    @media (max-width: 480px) {
-      main[style*="main"] { padding: 0.75rem; }
-      nav[style*="mobileSidebar"] { width: 85vw; }
-    }
-  `;
-  document.head.appendChild(style);
-}
