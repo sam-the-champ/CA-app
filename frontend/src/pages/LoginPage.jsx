@@ -1,5 +1,5 @@
 import { useState } from 'react';
-<parameter name="useNavigate"> from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { adminLogin, lecturerLogin } from '../api';
 
@@ -36,7 +36,7 @@ export default function LoginPage() {
 
   return (
     <div style={styles.page}>
-      <div style={styles.left}>
+      <div style={styles.left} className="login-left">
         <div style={styles.brand}>
           <div style={styles.logo}>CA</div>
           <h1 style={styles.brandName}>Course Allocation System</h1>
@@ -45,7 +45,7 @@ export default function LoginPage() {
         <div style={styles.pattern} aria-hidden="true" />
       </div>
 
-      <div style={styles.right}>
+      <div style={styles.right} className="login-right">
         <div style={styles.card}>
           <h2 style={styles.title}>Sign In</h2>
           <p style={styles.subtitle}>Select your role to continue</p>
