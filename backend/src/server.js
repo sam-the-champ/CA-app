@@ -7,6 +7,7 @@ const errorHandler = require('./middleware/errorHandler');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const lecturerRoutes = require('./routes/lecturerRoutes');
+const seedRoutes = require('./routes/seedRoutes');
 
 const app = express();
 
@@ -19,6 +20,9 @@ app.use(express.json());
 
 // Health check
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
+
+// Seed endpoint (must be before other routes)
+app.use('/api/seed', seedRoutes);
 
 // API Routes
 app.use('/api/auth', authRoutes);
