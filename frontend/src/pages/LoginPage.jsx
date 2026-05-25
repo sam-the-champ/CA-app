@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+<parameter name="useNavigate"> from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { adminLogin, lecturerLogin } from '../api';
 
@@ -39,7 +39,7 @@ export default function LoginPage() {
       <div style={styles.left}>
         <div style={styles.brand}>
           <div style={styles.logo}>CA</div>
-          <h1 style={styles.brandName}>Course Allocation<br />System</h1>
+          <h1 style={styles.brandName}>Course Allocation System</h1>
           <p style={styles.brandSub}>Department Portal — Manage lecturers, courses, and timetable allocations in one place.</p>
         </div>
         <div style={styles.pattern} aria-hidden="true" />
@@ -104,9 +104,6 @@ const styles = {
   page: { 
     display: 'flex', 
     minHeight: '100vh',
-    '@media (max-width: 768px)': {
-      flexDirection: 'column'
-    }
   },
   left: {
     flex: 1, 
@@ -135,14 +132,14 @@ const styles = {
   },
   brandName: { 
     color: '#fff', 
-    fontSize: 'clamp(1.3rem, 5vw, 2rem)', 
+    fontSize: '2rem', 
     fontFamily: 'var(--font-display)', 
     lineHeight: 1.25, 
     marginBottom: '1rem' 
   },
   brandSub: { 
     color: 'rgba(255,255,255,0.65)', 
-    fontSize: 'clamp(0.85rem, 2.5vw, 1rem)', 
+    fontSize: '1rem', 
     lineHeight: 1.7, 
     maxWidth: 320 
   },
@@ -170,13 +167,13 @@ const styles = {
   },
   title: { 
     fontFamily: 'var(--font-display)', 
-    fontSize: 'clamp(1.3rem, 4vw, 1.6rem)', 
+    fontSize: '1.6rem', 
     color: 'var(--primary)', 
     marginBottom: '0.25rem' 
   },
   subtitle: { 
     color: 'var(--text-3)', 
-    fontSize: 'clamp(0.8rem, 2vw, 0.9rem)', 
+    fontSize: '0.9rem', 
     marginBottom: '1.75rem' 
   },
   tabs: { 
@@ -209,5 +206,3 @@ const styles = {
     fontSize: '1rem' 
   },
 };
-
-// Mobile-specific styles applied via media queries in index.css
